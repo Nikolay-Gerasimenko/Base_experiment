@@ -112,7 +112,7 @@ class LegalDocument:
     def get_na_level(self, level_pattern, text):
         na_level_part = re.match(level_pattern + '([\d\s\.,\-и]+)', text)
         dash_numbers = re.search('[\d\.\s]+\-[\d\.\s]+', na_level_part.group(0))
-        ranged_numbers = re.search('([\d\s]+)\-([\d\s]+)', na_level_part.group(0))
+        ranged_numbers = re.search('(\d+\s+?)\-(\s+?\d+)', na_level_part.group(0))
         if ranged_numbers is not None:
             na_level_part_without_range = na_level_part.group(0)[:ranged_numbers.start()] + na_level_part.group(0)[ranged_numbers.end():]
             range_na_levels = ['{0}'.format(i) for i in range(int(ranged_numbers.group(1)), int(ranged_numbers.group(2))+1)]
